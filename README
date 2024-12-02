@@ -20,7 +20,13 @@
     python manage.py makemigrations
     python manage.py migrate
     ```
-5. Запустите сервер:
+5. Создайте файл .env со следющими параметрами, для получения кода регистрации на почту, и заполните их через гугл 
+    ```sh 
+    EMAIL_HOST_USER = ""
+    EMAIL_HOST_PASSWORD = ""
+    ```
+    Для того чтобы создать пароли приложений перейдите по ссылке https://myaccount.google.com/apppasswords
+6. Запустите сервер:
     ```sh
     python manage.py runserver
     ```
