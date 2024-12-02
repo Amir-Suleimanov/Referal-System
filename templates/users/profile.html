@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+</head>
+<body>
+    <h1>Профиль пользователя</h1>
+    <form action="{% url 'users:activate_invite_code' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" id="first_name" name="first_name" value="{{ user.profile.first_name }}">
+        <input type="hidden" id="last_name" name="last_name" value="{{ user.profile.last_name }}">
+        
+        <label for="invite_code">Инвайт-код:</label>
+        <input type="text" id="invite_code" name="invite_code" {% if user.profile.activated_invite_code %}value="{{ user.profile.activated_invite_code }}" readonly{% endif %}><br><br>
+
+        <input type="submit" value="Активировать код" {% if user.profile.activated_invite_code %}disabled{% endif %}>
+    </form>
+
+    {% if user.profile.activated_invite_code %}
+    <p>Активированный инвайт-код: {{ user.profile.activated_invite_code }}</p>
+    {% endif %}
+    
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    {% if message %}
+    <p style="color:green;">{{ message }}</p>
+    {% endif %}
+</body>
+</html>

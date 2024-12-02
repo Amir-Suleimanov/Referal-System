@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация - Шаг 1</title>
+</head>
+<body>
+    {{error}}
+    <h1>Введите номер телефона и email</h1>
+    <form action="{% url 'users:authenticate' %}" method="post">
+        {% csrf_token %}
+        <label for="phone_number">Номер телефона:</label>
+        <input type="text" id="phone_number" name="phone_number"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <input type="submit" value="Отправить код">
+    </form>
+</body>
+</html>
